@@ -24,7 +24,7 @@ const App = () => {
     const [data, setData] = useState([]);
     const [user, setUser] = useState([]);
     const [stats, setStats] = useState([]);
-    const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth < 1600);
+    const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth < 2500);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -180,7 +180,7 @@ const App = () => {
                                         </div>
                                     </div>
                                     <Divider />
-                                    <HasuraTable data={data} />
+                                    <HasuraTable data={data} isSmallScreen={isSmallScreen} />
                                 </Card>
                             </Col>
                         </Row>

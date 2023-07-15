@@ -51,9 +51,7 @@ const HasuraTable = (props) => {
         dataSource={props.data}
         columns={columns}
         rowKey={(record) => record.id}
-        scroll={{
-            y: 800,
-        }}
+        scroll={{ x: true }}
     />;
 };
 
