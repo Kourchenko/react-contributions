@@ -151,7 +151,7 @@ const App = () => {
                                                     </Tooltip>
                                                 </div>
                                                 <div className="icon-item bounce">
-                                                    <Tooltip title={`${numberWithCommas(stats.github_stats_additions_total)} Lines Removed`}>
+                                                    <Tooltip title={`${numberWithCommas(stats.github_stats_deletions_total)} Lines Removed`}>
                                                         <DeleteTwoTone twoToneColor='#eb2f96' />
                                                     </Tooltip>
                                                 </div>
