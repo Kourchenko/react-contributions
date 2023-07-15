@@ -11,8 +11,8 @@ const LandingPage = ({ onLogin }) => {
             <Row justify="center" align="middle" style={{ height: '100vh' }}>
                 <Col span={8}>
                     <div style={{ textAlign: 'center' }}>
-                        <Title level={2}>Welcome to Contributions</Title>
-                        <Title level={3}>A place to view your GitHub Contributions.</Title>
+                        <Title level={2}>Welcome to GitHub Contributions</Title>
+                        <Title level={3}>A place to view your contributions.</Title>
                         <Divider />
                         <>
                             <Button
