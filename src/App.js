@@ -4,19 +4,16 @@ import React, { useEffect, useState } from 'react';
 
 import HasuraTable from './HasuraTable';
 
-import { Tooltip, Layout, Menu, Card, Table, Row, Col, Avatar, Divider, Dropdown, Menu as AntMenu } from 'antd';
+import { Tooltip, Layout, Menu, Card, Row, Col, Avatar, Divider } from 'antd';
 
 import {
     FileAddTwoTone,
     DeleteTwoTone,
     MessageTwoTone,
-    UserOutlined,
-    LaptopOutlined,
-    NotificationOutlined
+    UserOutlined
 } from '@ant-design/icons';
-import UserBadges from './UserBadges';
 
-const { Header, Content, Sider } = Layout;
+const { Content, Sider } = Layout;
 
 
 const App = () => {
@@ -25,6 +22,7 @@ const App = () => {
     const [user, setUser] = useState([]);
     const [stats, setStats] = useState([]);
     const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth < 2500);
+    const [avatarClickCount, setAvatarClickCount] = useState(0);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -106,26 +104,26 @@ const App = () => {
         };
     }, []);
 
-    const icons = [
-        {
-            id: 1,
-            type: 'CrownTwoTone',
-            title: 'King of the Castle',
-            color: '#f5222d',
-        },
-        {
-            id: 2,
-            type: 'DeleteTwoTone',
-            title: "Are you sure you didn't need that?",
-            color: '#73d13d',
-        },
-        {
-            id: 3,
-            type: 'MessageTwoTone',
-            title: "Write it down now, forget later.",
-            color: '#4096ff',
-        }
-    ];
+    // const icons = [
+    //     {
+    //         id: 1,
+    //         type: 'CrownTwoTone',
+    //         title: 'King of the Castle',
+    //         color: '#f5222d',
+    //     },
+    //     {
+    //         id: 2,
+    //         type: 'DeleteTwoTone',
+    //         title: "Are you sure you didn't need that?",
+    //         color: '#73d13d',
+    //     },
+    //     {
+    //         id: 3,
+    //         type: 'MessageTwoTone',
+    //         title: "Write it down now, forget later.",
+    //         color: '#4096ff',
+    //     }
+    // ];
 
     const numberWithCommas = (x) => {
         if (!x) return 0;
@@ -156,7 +154,49 @@ const App = () => {
                             <Col xs={24} sm={24} md={24} lg={24} xl={24}>
                                 <Card title="User Profile" style={{ height: '100%' }}>
                                     <div style={{ display: 'flex', alignItems: 'center' }}>
-                                        <Avatar src={user.github_avatar_url} size={64} icon={<UserOutlined />} style={{ marginRight: '16px' }} />
+                                        {numberWithCommas(avatarClickCount) === 0 &&
+                                            <Tooltip title="Click Me!">
+                                                <Avatar src={user.github_avatar_url} size={64} icon={<UserOutlined />} style={{ marginRight: '16px' }} onClick={() => setAvatarClickCount(avatarClickCount + 1)} />
+                                            </Tooltip>
+                                        }
+                                        {numberWithCommas(avatarClickCount) > 0 && numberWithCommas(avatarClickCount) < 10 &&
+                                            <Avatar src={user.github_avatar_url} size={64} icon={<UserOutlined />} style={{ marginRight: '16px' }} onClick={() => setAvatarClickCount(avatarClickCount + 1)} />
+                                        }
+                                        {numberWithCommas(avatarClickCount) >= 10 && numberWithCommas(avatarClickCount) < 20 &&
+                                            <Tooltip title="Having fun clicking?">
+                                                <Avatar src={user.github_avatar_url} size={64} icon={<UserOutlined />} style={{ marginRight: '16px' }} onClick={() => setAvatarClickCount(avatarClickCount + 1)} />
+                                            </Tooltip>
+                                        }
+                                        {numberWithCommas(avatarClickCount) >= 20 && numberWithCommas(avatarClickCount) < 50 &&
+                                            <Tooltip title="Going for a world record?">
+                                                <Avatar src={user.github_avatar_url} size={64} icon={<UserOutlined />} style={{ marginRight: '16px' }} onClick={() => setAvatarClickCount(avatarClickCount + 1)} />
+                                            </Tooltip>
+                                        }
+                                        {numberWithCommas(avatarClickCount) >= 50 && numberWithCommas(avatarClickCount) < 100 &&
+                                            <Tooltip title="Stop that!">
+                                                <Avatar src={user.github_avatar_url} size={64} icon={<UserOutlined />} style={{ marginRight: '16px' }} onClick={() => setAvatarClickCount(avatarClickCount + 1)} />
+                                            </Tooltip>
+                                        }
+                                        {numberWithCommas(avatarClickCount) >= 100 && numberWithCommas(avatarClickCount) < 105 &&
+                                            <Tooltip title="Congratulations! 100 Clicks! World Record!">
+                                                <Avatar src={user.github_avatar_url} size={64} icon={<UserOutlined />} style={{ marginRight: '16px' }} onClick={() => setAvatarClickCount(avatarClickCount + 1)} />
+                                            </Tooltip>
+                                        }
+                                        {numberWithCommas(avatarClickCount) >= 105 && numberWithCommas(avatarClickCount) < 106 &&
+                                            <Tooltip title="You hit the world record.">
+                                                <Avatar src={user.github_avatar_url} size={64} icon={<UserOutlined />} style={{ marginRight: '16px' }} onClick={() => setAvatarClickCount(avatarClickCount + 1)} />
+                                            </Tooltip>
+                                        }
+                                        {numberWithCommas(avatarClickCount) >= 106 && numberWithCommas(avatarClickCount) < 107 &&
+                                            <Tooltip title="You can stop now.">
+                                                <Avatar src={user.github_avatar_url} size={64} icon={<UserOutlined />} style={{ marginRight: '16px' }} onClick={() => setAvatarClickCount(avatarClickCount + 1)} />
+                                            </Tooltip>
+                                        }
+                                        {numberWithCommas(avatarClickCount) >= 107 &&
+                                            <Tooltip title={`${numberWithCommas(avatarClickCount)} Clicks.`}>
+                                                <Avatar src={user.github_avatar_url} size={64} icon={<UserOutlined />} style={{ marginRight: '16px' }} onClick={() => setAvatarClickCount(avatarClickCount + 1)} />
+                                            </Tooltip>
+                                        }
                                         <div>
                                             <div className="icon-container">
                                                 <div className="icon-item bounce">

@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Table, Tag } from 'antd';
-import axios from 'axios';
 
 const HasuraTable = (props) => {
 
