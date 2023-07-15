@@ -24,6 +24,7 @@ const App = () => {
     const [data, setData] = useState([]);
     const [user, setUser] = useState([]);
     const [stats, setStats] = useState([]);
+    const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth < 1600);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -92,6 +93,17 @@ const App = () => {
 
         fetchData();
         fetchUserStats();
+
+        const handleResize = () => {
+            setIsSmallScreen(window.innerWidth < 768);
+        };
+
+        handleResize(); // Check initial screen size
+
+        window.addEventListener('resize', handleResize);
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
     }, []);
 
     const icons = [
@@ -122,19 +134,21 @@ const App = () => {
 
     return (
         <Layout style={{ minHeight: '100vh' }}>
-            <Sider width={200} theme="light">
-                <Menu theme="light" mode="inline" defaultSelectedKeys={['1']}>
-                    <Menu.Item key="1" icon={<UserOutlined />}>
-                        You
-                    </Menu.Item>
-                    {/* <Menu.Item key="2" icon={<LaptopOutlined />}>
-                        Leaderboard
-                    </Menu.Item>
-                    <Menu.Item key="3" icon={<NotificationOutlined />}>
-                        Notifications
-                    </Menu.Item> */}
-                </Menu>
-            </Sider>
+            {!isSmallScreen && (
+                <Sider width={200} theme="light" collapsible={true} defaultCollapsed={true} collapsedWidth={80}>
+                    <Menu theme="light" mode="inline" defaultSelectedKeys={['1']}>
+                        <Menu.Item key="1" icon={<UserOutlined />}>
+                            You
+                        </Menu.Item>
+                        {/* <Menu.Item key="2" icon={<LaptopOutlined />}>
+                            Leaderboard
+                        </Menu.Item>
+                        <Menu.Item key="3" icon={<NotificationOutlined />}>
+                            Notifications
+                        </Menu.Item> */}
+                    </Menu>
+                </Sider>
+            )}
             <Layout>
                 <Content style={{ margin: '2px' }}>
                     <div style={{ padding: '2px', background: '#fff', minHeight: 360 }}>
