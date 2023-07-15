@@ -1,9 +1,7 @@
 import React from 'react';
-import { Table, Tag } from 'antd';
+import { Table, Tag, Empty } from 'antd';
 
 const HasuraTable = (props) => {
-
-
     const columns = [
         {
             title: 'Message',
@@ -46,11 +44,19 @@ const HasuraTable = (props) => {
         }
     ];
 
+    const customLocale = {
+        emptyText: 'Your email must match your GitHub email. Please make sure your email is linked to your GitHub account.', // Customize the empty text message
+    };
+
+    if (props.data.length === 0) {
+        return (<Empty description="Your email must match your GitHub email. Please make sure your email is linked to your GitHub account." />);
+    }
     return <Table
         dataSource={props.data}
         columns={columns}
         rowKey={(record) => record.id}
         scroll={{ x: true }}
+        locale={customLocale}
     />;
 };
 

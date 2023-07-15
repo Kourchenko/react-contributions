@@ -31,7 +31,7 @@ const UserBadges = (props) => {
     return (
         <div className="icon-item bounce">
             <Tooltip title={title}>
-                <IconComponent key={icon.id} twoToneColor={color} />
+                <IconComponent key={icon.id} twoToneColor="#faad14" />
             </Tooltip>
         </div>
     );
